@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class BOJ_1006 {
 	public static void main(String[] args) throws NumberFormatException, IOException {
-		// 미 해결
+		// 답은 나오는데 런타임 오류 (ArrayBoundOutOfIndex) 미 해결
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		String[] input = br.readLine().split("\n");
 		int t = Integer.parseInt(input[0]);
@@ -37,13 +37,13 @@ public class BOJ_1006 {
 						cnt[0] = -1;
 						cnt[7] = -1;
 						count++;
-						j++;
+//						j++;
 					}
 					if (enemy2[0] + enemy2[7] <= w) {
 						cnt[8] = -1;
 						cnt[15] = -1;
 						count++;
-						j++;
+//						j++;
 					}
 				}
 				if (j <= 7) {
