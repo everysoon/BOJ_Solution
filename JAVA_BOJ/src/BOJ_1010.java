@@ -7,19 +7,20 @@ public class BOJ_1010 {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		String[] input = br.readLine().split("\n");
 		int test = Integer.parseInt(input[0]);
-		long[][] d ; // 0<n<=m<=30이라
+		long[][] d ; 
 		// 조합 : nCr (서로 다른 n개에서 r(n>=r)를 택하는 경우
 		// 서쪽에는 n개의 사이트(다리 짓기 좋은 곳), 동쪽에는 m개의 사이트
 		// 한 사이트에는 최대 한개의 다리만 연결 가능
 		// n<=m 이라 최대로 다리를 지으려면 n개만큼 지어야 함.
 		// 주의사항 * 다리는 겹쳐질 수 없음.
-
+		//       * int로 놓으면 범위에 벗어나서 long으로 해줘야 함!!! ㅠㅠ
 		for (int t = 0; t < test; t++) {
 			input = br.readLine().split(" ");
 			int n = Integer.parseInt(input[0]);
 			int m = Integer.parseInt(input[1]);
 			d = new long [n+1][m+1];
 			for (int i = 0; i <= m; i++) {
+				// n이 1이면 m개의 개수만큼 지을수 있는 경우의 수가 있기때문에 d[1][i]를 모두 i(m)의 수로 초기화
 				d[1][i] = i;
 			}
 
