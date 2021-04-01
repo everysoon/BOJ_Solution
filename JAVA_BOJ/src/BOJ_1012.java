@@ -10,6 +10,7 @@ public class BOJ_1012 {
 	static boolean arr[][];
 	static int n, m;
 
+	// DFS 문제
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
@@ -18,28 +19,30 @@ public class BOJ_1012 {
 		int ans = 0; // 지렁이의 개수
 		for (int t = 0; t < test; t++) {
 			st = new StringTokenizer(br.readLine());
-	
-			 m = Integer.parseInt(st.nextToken()); // 배추밭 가로길이
-			 n = Integer.parseInt(st.nextToken()); // 배추밭 세로길이
+
+			m = Integer.parseInt(st.nextToken()); // 배추밭 가로길이
+			n = Integer.parseInt(st.nextToken()); // 배추밭 세로길이
 			int k = Integer.parseInt(st.nextToken()); // 배추 심어져있는 위치 개수
 			arr = new boolean[n][m];
 			check = new boolean[n][m];
+
 			ans = 0;
-			
+
 			for (int i = 0; i < k; i++) {
 				// 배추 위치 받기
 				st = new StringTokenizer(br.readLine());
 				int x = Integer.parseInt(st.nextToken());
 				int y = Integer.parseInt(st.nextToken());
-				
+
 				// x == 열, y == 행
 				arr[y][x] = true;
+
 			}
-			for(int i=0; i<n; i++) {
-				for(int j=0; j<m; j++) {
-					if(checkLocation(i, j)==true) {
+			for (int i = 0; i < n; i++) {
+				for (int j = 0; j < m; j++) {
+					if (checkLocation(i, j) == true) {
 						ans++;
-						dfs(i,j);
+						dfs(i, j);
 					}
 				}
 			}
@@ -53,10 +56,13 @@ public class BOJ_1012 {
 
 	public static boolean checkLocation(int row, int cal) {
 		// 좌표 값이 잘못된 경우
-		if (row < 0 || row >= n || cal < 0 || cal >= m)
+		if (row < 0 || row >= n || cal < 0 || cal >= m) {
 			return false;
-		if (check[row][cal] == true || arr[row][cal] == false)
+		}
+		// 다녀온 좌표일 경우 || 밭이 아닌경우
+		if (check[row][cal] == true || arr[row][cal] == false) {
 			return false;
+		}
 		return true;
 
 	}
@@ -69,20 +75,20 @@ public class BOJ_1012 {
 		// - dfs호출 하나가 종료되면 구역이 한개(지렁이 한개)라고 생각하면 됨!
 		check[x][y] = true;
 		// '상'
-		if(checkLocation(x-1,y)) {
-			dfs(x-1,y);
+		if (checkLocation(x - 1, y)) {
+			dfs(x - 1, y);
 		}
 		// '하'
-		if(checkLocation(x+1,y)) {
-			dfs(x+1,y);
+		if (checkLocation(x + 1, y)) {
+			dfs(x + 1, y);
 		}
 		// '좌'
-		if(checkLocation(x,y-1)) {
-			dfs(x,y-1);
+		if (checkLocation(x, y - 1)) {
+			dfs(x, y - 1);
 		}
 		// '우'
-		if(checkLocation(x,y+1)) {
-			dfs(x,y+1);
+		if (checkLocation(x, y + 1)) {
+			dfs(x, y + 1);
 		}
 	}
 }
